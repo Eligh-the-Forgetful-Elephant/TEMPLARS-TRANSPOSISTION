@@ -1,5 +1,5 @@
-# Define a dictionary to store the rotation values for each character
-rotation_values = {
+
+transposition_cipher = {
     'A': ['N', 'C', 'Q', 'A'],
     'B': ['Y', 'K', 'S', 'X', '-'],
     'C': ['O', 'B', '.', '0', 'A'],
@@ -41,30 +41,37 @@ rotation_values = {
     '?': ['T', 'G', 'G', 'Q', 'K']
 }
 
-def encrypt(text):
-    encrypted_text = ""
-    for char in text:
-        if char in rotation_values:
-            row = int(input("Enter the row for character '{}': ".format(char))
-            encrypted_text += rotation_values[char][row - 1]
+# Function to encrypt a message
+def encrypt(message):
+    encrypted_message = []
+    for char in message:
+        if char in transposition_cipher:
+            options = transposition_cipher[char]
+            encrypted_char = options.pop(0)
+            options.append(encrypted_char)
+            encrypted_message.append(encrypted_char)
         else:
-            encrypted_text += char
-    return encrypted_text
+            encrypted_message.append(char)
+    return ''.join(encrypted_message)
 
-def decrypt(text):
-    decrypted_text = ""
-    for char in text:
-        if char in rotation_values:
-            row = rotation_values[char].index(input("Enter the character in row {} for '{}': ".format(char, row)))
-            decrypted_text += char
+# Function to decrypt a message
+def decrypt(encrypted_message):
+    decrypted_message = []
+    for char in encrypted_message:
+        if char in transposition_cipher:
+            options = transposition_cipher[char]
+            original_char = options.pop(-1)
+            options.insert(0, original_char)
+            decrypted_message.append(original_char)
         else:
-            decrypted_text += char
-    return decrypted_text
+            decrypted_message.append(char)
+    return ''.join(decrypted_message)
 
-# Example usage:
-text = "HELLO, WORLD!"
-encrypted_text = encrypt(text)
-print("Encrypted text: ", encrypted_text)
+# Example usage
+message = "HELLO, WORLD!"
+encrypted_message = encrypt(message)
+decrypted_message = decrypt(encrypted_message)
 
-decrypted_text = decrypt(encrypted_text)
-print("Decrypted text: ", decrypted_text)
+print("Original Message: " + message)
+print("Encrypted Message: " + encrypted_message)
+print("Decrypted Message: " + decrypted_message)
