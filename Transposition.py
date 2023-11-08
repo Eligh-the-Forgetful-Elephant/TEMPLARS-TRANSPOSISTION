@@ -47,7 +47,7 @@ def encrypt(message):
     for char in message:
         if char in transposition_cipher:
             options = transposition_cipher[char]
-            encrypted_char = options[0]  # Take the first option
+            encrypted_char = options[0]  # Take the first option NEED TO CHANGE TO GO DOWN THE COLUMNS AND BACK
             encrypted_message.append(encrypted_char)
         else:
             encrypted_message.append(char)
