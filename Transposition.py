@@ -55,19 +55,19 @@ def encrypt(message):
             encrypted_message.append(char)
     return ''.join(encrypted_message)
 #decrypt user input (can disable)
-#def decrypt(encrypted_message):
-#    decrypted_message = []
-#    for index, char in enumerate(encrypted_message):
-#        original_char = None
-#        for key, options in transposition_cipher.items():
-#            if char in options[index%len(options)]:
-#                original_char = key
-#                break
-#        if original_char is not None:
-#            decrypted_message.append(original_char)
-#        else:
-#            decrypted_message.append(char)
-#    return ''.join(decrypted_message)
+def decrypt(encrypted_message):
+    decrypted_message = []
+    for index, char in enumerate(encrypted_message):
+        original_char = None
+        for key, options in transposition_cipher.items():
+            if char in options[index%len(options)]:
+                original_char = key
+                break
+        if original_char is not None:
+            decrypted_message.append(original_char)
+        else:
+            decrypted_message.append(char)
+    return ''.join(decrypted_message)
 #this is where we added in the option to decrypt user input
 def encrypt_message():
     message = input("Enter a message: ")
