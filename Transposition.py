@@ -1,3 +1,5 @@
+import sys
+import argparse
 
 transposition_cipher = {
     'A': ['N', 'C', 'Q', 'A', '!'],
@@ -41,6 +43,7 @@ transposition_cipher = {
     '?': ['T', 'G', 'G', 'Q', 'K']
 }
 
+#encrypt user input
 def encrypt(message):
     encrypted_message = []
     for index, char in enumerate(message.upper()):
@@ -51,7 +54,7 @@ def encrypt(message):
         else:
             encrypted_message.append(char)
     return ''.join(encrypted_message)
-
+#decrypt user input (can disable)
 def decrypt(encrypted_message):
     decrypted_message = []
     for index, char in enumerate(encrypted_message):
@@ -65,12 +68,20 @@ def decrypt(encrypted_message):
         else:
             decrypted_message.append(char)
     return ''.join(decrypted_message)
-# Prompt the user for input
-message = input("Enter a message: ")
+#this is where we added in the option to decrypt 
+def encrypt_message():
+    message = input("Enter a message: ")
+    encrypted_message = encrypt(message)
+    print("Encrypted Message: " + encrypted_message)
 
-# Encrypt the message and print it
-encrypted_message = encrypt(message)
-print("Encrypted Message: " + encrypted_message)
+def decrypt_message():
+    message = input("Enter a message: ")
+    decrypted_message = decrypt(message)
+    print("Decrypted Message: " + decrypted_message)
 
-decrypted_message = decrypt(encrypted_message)
-print("Decrypted Message: " + decrypted_message)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--decrypt', action='store_const', default=encrypt_message, const=decrypt_message)
+    args = parser.parse_args()
+    args.decrypt()
