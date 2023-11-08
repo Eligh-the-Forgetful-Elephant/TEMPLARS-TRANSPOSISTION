@@ -47,31 +47,15 @@ def encrypt(message):
     for char in message:
         if char in transposition_cipher:
             options = transposition_cipher[char]
-            encrypted_char = options.pop(0)
-            options.append(encrypted_char)
+            encrypted_char = options[0]  # Take the first option
             encrypted_message.append(encrypted_char)
         else:
             encrypted_message.append(char)
     return ''.join(encrypted_message)
 
-# Function to decrypt a message
-def decrypt(encrypted_message):
-    decrypted_message = []
-    for char in encrypted_message:
-        if char in transposition_cipher:
-            options = transposition_cipher[char]
-            original_char = options.pop(-1)
-            options.insert(0, original_char)
-            decrypted_message.append(original_char)
-        else:
-            decrypted_message.append(char)
-    return ''.join(decrypted_message)
+# Prompt the user for input
+message = input("Enter a message: ")
 
-# Example usage
-message = "HELLO, WORLD!"
+# Encrypt the message and print it
 encrypted_message = encrypt(message)
-decrypted_message = decrypt(encrypted_message)
-
-print("Original Message: " + message)
 print("Encrypted Message: " + encrypted_message)
-print("Decrypted Message: " + decrypted_message)
