@@ -41,21 +41,36 @@ transposition_cipher = {
     '?': ['T', 'G', 'G', 'Q', 'K']
 }
 
-# Function to encrypt a message
 def encrypt(message):
     encrypted_message = []
-    for char in message:
+    for index, char in enumerate(message.upper()):
         if char in transposition_cipher:
             options = transposition_cipher[char]
-            encrypted_char = options[0]  # Take the first option NEED TO CHANGE TO GO DOWN THE COLUMNS AND BACK
+            encrypted_char = options[index%len(options)]
             encrypted_message.append(encrypted_char)
         else:
             encrypted_message.append(char)
     return ''.join(encrypted_message)
 
+def decrypt(encrypted_message):
+    decrypted_message = []
+    for index, char in enumerate(encrypted_message):
+        original_char = None
+        for key, options in transposition_cipher.items():
+            if char in options[index%len(options)]:
+                original_char = key
+                break
+        if original_char is not None:
+            decrypted_message.append(original_char)
+        else:
+            decrypted_message.append(char)
+    return ''.join(decrypted_message)
 # Prompt the user for input
 message = input("Enter a message: ")
 
 # Encrypt the message and print it
 encrypted_message = encrypt(message)
 print("Encrypted Message: " + encrypted_message)
+
+decrypted_message = decrypt(encrypted_message)
+print("Decrypted Message: " + decrypted_message)
