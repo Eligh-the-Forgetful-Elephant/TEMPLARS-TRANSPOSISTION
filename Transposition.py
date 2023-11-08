@@ -68,7 +68,7 @@ def decrypt(encrypted_message):
         else:
             decrypted_message.append(char)
     return ''.join(decrypted_message)
-#this is where we added in the option to decrypt 
+#this is where we added in the option to decrypt user input
 def encrypt_message():
     message = input("Enter a message: ")
     encrypted_message = encrypt(message)
