@@ -12,3 +12,5 @@ Basic usage :  # python transposition.py
                 #python transposition.py --decrypt
                   ENTER MESSAGE : Encrypted text here 
 
+![image](https://github.com/Eligh-the-Forgetful-Elephant/TEMPLARS-TRANSPOSITION/assets/148509569/7d40d51b-101b-49d6-a4c6-8c0250c104f0)
+
