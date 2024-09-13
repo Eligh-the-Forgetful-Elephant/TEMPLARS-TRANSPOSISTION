@@ -7,8 +7,10 @@ The plan is to use this as part of multiple stages in ctf challenges. more info 
 
 use the source code of tranposition.py and run the program,
         
-Basic usage :  # python transposition.py  
+Basic usage :  
+                # python transposition.py  
                   ENTER MESSAGE : Hello World
+                
                 #python transposition.py --decrypt
                   ENTER MESSAGE : Encrypted text here 
 
